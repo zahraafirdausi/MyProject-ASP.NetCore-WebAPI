@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/dist/css/adminlte.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Account.js"></script>
+
+</head>
+<body class="hold-transition login-page">
+    @RenderBody();
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="~/AdminLTE-3.2.0/index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<@*script>
+    $('#loginForm').on("submit", function (event) {
+        //console.log("clicked submit");
+        event.preventDefault();
+        debugger;
+        var Account = new Object();
+
+        Account.email = $('#email').val();
+        Account.password = $('#password').val();
+        $.ajax({
+            url: "http://localhost:8082/LoginVM",
+            type: 'POST',
+            data: JSON.stringify(Account), //mau ngirim datanya di transform dalam bentuk json
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                
+                $.post("/Account/Login", { email: Account.email })
+                    .done(function () {
+                        var getToken = result.token
+                        sessionStorage.setItem("token", getToken) //simpan token pada session storage
+                        console.log(getToken)
+                        debugger;
+                        swal({
+                            title: result.message,
+                            icon: "success",
+                        })
+                            .then((successAlert) => {
+                                if (successAlert) {
+                                    location.replace("/departments/index");
+                                } else {
+                                    location.replace("/departments/index");
+                                }
+                            });
+                    })
+                    .fail(function () {
+                        alert("Login Gagal! fail");
+                    })
+                    .always(function () {
+
+                    });
+            },error: function (errormessage) {
+                //alert("Login Gagal!"); // Handle error response
+                swal({
+                    title: "Login Gagal!",
+                    text: "Harap Periksa Kembali Email dan Password Anda!",
+                    icon: "error"
+                })
+            }
+
+        });
+    })
+</script>*@
+
+@RenderSection("script",required:false)
+</body>
+</html>
