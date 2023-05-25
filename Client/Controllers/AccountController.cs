@@ -97,15 +97,16 @@ namespace Client.Controllers
         //    }
         //    return View();
         //}
+        //}
 
-        public ActionResult Logout()
-        {
+        //public ActionResult Logout()
+        //{
 
-            HttpContext.Session.Clear();
-            HttpContext.Session.Remove("email");
+        //    HttpContext.Session.Clear();
+        //    HttpContext.Session.Remove("email");
 
-            return RedirectToAction("Login");
-        }
+        //    return RedirectToAction("Login");
+        //}
 
         //[Authentication]
         public IActionResult Index()

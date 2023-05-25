@@ -81,15 +81,23 @@ namespace MyProject.Repository
         //fungsi generate NIK
         public string GetNIK()
         {
-            var lastEmployee = myContext.Employees.OrderByDescending(e => e.NIK).FirstOrDefault();
+            //var lastEmployee = myContext.Employees.OrderByDescending(e => e.NIK).FirstOrDefault();
+            //var currentDate = DateTime.Now.ToString("ddMMyyyy");
+            //int sequenceNumber = 1;
+            //if (lastEmployee != null && lastEmployee.NIK.StartsWith(currentDate))
+            //{
+            //    sequenceNumber = int.Parse(lastEmployee.NIK.Substring(currentDate.Length)) + 1;
+            //}
+            //string newNIK = $"{currentDate}{sequenceNumber.ToString("D3")}";
+            //return newNIK;
             var currentDate = DateTime.Now.ToString("ddMMyyyy");
-            int sequenceNumber = 1;
-            if (lastEmployee != null && lastEmployee.NIK.StartsWith(currentDate))
+            int countEmployee = myContext.Employees.Count();
+            if (countEmployee == 0)
             {
-                sequenceNumber = int.Parse(lastEmployee.NIK.Substring(currentDate.Length)) + 1;
+                string newNIK = DateTime.Now.ToString("ddMMyyyy") + "000";
+                return newNIK;
             }
-            string newNIK = $"{currentDate}{sequenceNumber.ToString("D3")}";
-            return newNIK;
+            return $"{currentDate}{countEmployee.ToString("D3")}";
         }
 
         //fungsi vm
